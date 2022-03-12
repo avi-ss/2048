@@ -1,0 +1,59 @@
+:root {
+  --hue: 200;
+  --cell-border: 5vmin;
+  --background-color: white;
+  --game-board-color: #ccc;
+  --cell-color: #aaa;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-size: 7.5vmin;
+  font-family: Helvetica, sans-serif;
+  background-color: hsl(var(--hue), 30%, 90%);
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-size), var(--cell-size));
+  grid-template-rows: repeat(var(--grid-size), var(--cell-size));
+  background-color: var(--game-board-color);
+  gap: var(--cell-gap);
+
+  border-radius: var(--cell-border);
+  padding: var(--cell-gap);
+  position: relative;
+}
+
+.cell {
+  background-color: var(--cell-color);
+  border-radius: var(--cell-border);
+}
+
+.tile {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+  left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+  border-radius: var(--cell-border);
+  font-weight: bold;
+  background-color: hsl(var(--hue), 50%, var(--tile-background));
+  color: hsl(var(--hue), 100%, var(--tile-text));
+  animation: show 200ms ease-in-out;
+  transition: 100ms ease-in-out;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0.5;
+    transform: scale(0);
+  }
+}
